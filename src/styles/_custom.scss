@@ -1,0 +1,61 @@
+/* styles */
+@import url('https://fonts.googleapis.com/css2?family=Barlow:wght@300;500;700&display=swap');
+
+body {
+    background-color: rgb(0, 53, 97);
+    font-family:'Barlow', sans-serif;
+}
+
+h2{
+    font-weight: 700;
+}
+
+.temp {
+    font-size:36pt;
+    font-weight: 500;
+    margin: auto;
+}
+
+.cities, .modal-cities{
+    overflow:auto;
+    height: 200px;
+    cursor: pointer;
+}
+
+.fa-edit, .modal-search{
+    cursor: pointer;
+}
+
+.fa-search:hover{
+    color: grey;
+}
+.cities, .modal-cities li:hover{
+    background-color:darkgray;
+}
+
+.hourly-weather-item:hover{
+    background-color:rgb(230, 230, 230);
+}
+
+.bkg_img{
+    width: inherit;
+    height: 250px;
+    object-fit: cover;
+}
+
+.hourly-weather-item {
+    background-color:rgba(255, 255, 255, 0.3);
+    box-shadow:  2px 2px 5px #d3d3d3;
+    margin: 5px 5px;
+    
+}
+
+.hourly-icon{
+    width: 15%;
+    height: 15%;
+    padding: 5px;
+}
+
+.headline{
+    font-size: 10pt;
+}
