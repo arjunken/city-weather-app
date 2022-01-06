@@ -4,3 +4,4 @@
 .config.js
 .gitignore
 .env_sample
+config.php
