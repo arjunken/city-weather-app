@@ -1,5 +1,7 @@
 const weatherbody = document.querySelector('.weatherbody');
 const hourly_weather = document.querySelector('.hourly-weather');
+const hourly_tab = document.getElementById('hourly-tab');
+const daily_tab = document.getElementById('daily-tab');
 
 //#####################
 // Display Current Weather
@@ -11,9 +13,9 @@ const displayCurrentWeatherData = (wdata,citydata) => {
     img = `<img src="assets/day.jpg" class="bkg_img" alt="">`;
     }
     const htmlContent = img + 
-    `<p class="city my-2">${citydata[0].cityName}, ${citydata[0].cityProv}, ${citydata[0].cityCtr} <br> ${dateFns.format(wdata[0].localObservationDateTime,"ha, dddd")}</p>
+    `<p class="city my-2">${citydata[0].cityName}, ${citydata[0].cityProv}, ${citydata[0].cityCtr} <br> Updated ${dateFns.distanceInWords(new Date(),wdata[0].apiCallTime,{ addSuffix: true })}</p>
     <i class="fa fa-edit" data-bs-toggle="modal" data-bs-target="#Modal" data-bs-toggle="tooltip" data-bs-placement="top" title="Change Location"></i>
-    <div class="d-flex flex-row justify-content-evenly">
+    <div class="d-flex flex-row justify-content-evenly">        
         <p class="temp">${wdata[0].temperatureValue} <sup>0</sup>${wdata[0].temperatureUnit}</p>
         <p class="conditions m-auto">${wdata[0].weatherText}</p>
         <img src="assets/${wdata[0].weatherIcon}.png" alt="" class="m-auto weathericon">
@@ -25,7 +27,8 @@ const displayCurrentWeatherData = (wdata,citydata) => {
 //#####################
 // Display Hourly Weather
 //#####################
-const displayHourlyData = (hourlydata) => {
+const displayHourlyData = (hourlydata) => {   
+    hourly_tab.innerHTML = ` (${dateFns.distanceInWords(new Date(),hourlydata[0].apiCallTime,{ addSuffix: true })})`;
     for (let i=1;i<hourlydata.length;i++){
     hourly_weather.innerHTML += `
     <div class="hourly-weather-item d-flex flex-row"> 
@@ -44,7 +47,7 @@ const displayHourlyData = (hourlydata) => {
 const displayDailyWeatherData = (dailydata) => {
     //Display Headline Text
     weatherbody.innerHTML += `<p class="muted text-warning headline"> ${dailydata[1].headline}</p>`;
-
+    daily_tab.innerHTML = ` (${dateFns.distanceInWords(new Date(),dailydata[0].apiCallTime,{ addSuffix: true })})`;
     //Chart 
         const data = {
             labels: dailydata[2].xAxis,
