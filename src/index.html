@@ -19,17 +19,17 @@
      
         <h2 class="text-center my-4 text-light">City Weather Lookup</h2>
         <form class="search" style="display: none;">
-            <label for="search-city"></label>
+            <label for="search-city">City Name:</label> <br>
             <input class="form-control border-light" type="text" name="search_city" placeholder="Type City Name for Weather">
         </form>
      </div>
     <ul class="cities list-group" style="display: none;"> </ul>
     <div class="weatherbody d-flex flex-column bg-light text-center"> </div>    
-    <div class="card rounded-0"> 
+    <div class="card rounded-0" style="display:none"> 
         <nav>
             <div class="nav nav-tabs mt-2" id="nav-tab" role="tablist">
-              <button class="nav-link active" id="nav-hourly-tab" data-bs-toggle="tab" data-bs-target="#nav-hourly" type="button" role="tab" aria-controls="nav-hourly" aria-selected="true">Hourly Forecast</button>
-              <button class="nav-link" id="nav-daily-tab" data-bs-toggle="tab" data-bs-target="#nav-daily" type="button" role="tab" aria-controls="nav-daily" aria-selected="false">5 Day Forecast</button>
+              <button class="nav-link active" id="nav-hourly-tab" data-bs-toggle="tab" data-bs-target="#nav-hourly" type="button" role="tab" aria-controls="nav-hourly" aria-selected="true">Hourly Forecast <span id="hourly-tab"> </span></button>
+              <button class="nav-link" id="nav-daily-tab" data-bs-toggle="tab" data-bs-target="#nav-daily" type="button" role="tab" aria-controls="nav-daily" aria-selected="false">5 Day Forecast <span id="daily-tab"> </span> </button>
             </div>
         </nav>
           <div class="tab-content" id="nav-tabContent">
@@ -55,7 +55,7 @@
         </div>
         <div class="modal-body">
             <form class="modal-search">
-            <label for="search-city"></label>
+            <label for="search-city">City Name:</label> <br>
             <input class="form-control border-dark" type="text" name="search_city" placeholder="Search New Location">
             </form>
         </div>
