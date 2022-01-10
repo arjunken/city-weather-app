@@ -49,6 +49,7 @@
     "url": "git@github.com:taniarascia/webpack-boilerplate"
   },
   "dependencies": {
-    "@babel/plugin-transform-runtime": "^7.16.7"
+    "@babel/plugin-transform-runtime": "^7.16.7",
+    "source-map": "^0.7.3"
   }
 }

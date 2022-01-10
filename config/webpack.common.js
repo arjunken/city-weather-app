@@ -31,6 +31,10 @@ module.exports = {
           },
           noErrorOnMissing: true,
         },
+        {
+          from: paths.server,
+          to: 'server',          
+        },
       ],
     }),
 
