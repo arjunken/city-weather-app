@@ -11,6 +11,7 @@ const modalBody = document.querySelector('.modal-body');
 const modalSave = document.querySelector('.modal-save');
 const modalSearch = document.querySelector('.modal-search');
 const modalCities = document.querySelector('.modal-cities');
+const apifailed = document.querySelector('.apifailed');
 
 //Tooltip initialization
 var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'));
@@ -70,8 +71,11 @@ if(localCityData){
             localStorage.setItem('currentWeatherData',JSON.stringify(currentWeatherData));  
             localCurrentWeatherData = JSON.parse(localStorage.getItem('currentWeatherData'));
             displayCurrentWeatherData(localCurrentWeatherData,localCityData);
+            if(wdata.code === "ServiceUnavailable"){
+                apifailed.innerHTML = "Message from Accuweather: "+wdata.message;                    
+            }
         }).catch(err => {
-                console.log("There is some error getting the weather information:",err.message);
+                console.log("There is some error getting the weather information:",err.message);                
         });
     }else{
         displayCurrentWeatherData(localCurrentWeatherData,localCityData);
