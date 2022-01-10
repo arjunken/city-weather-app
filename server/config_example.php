@@ -1,0 +1,3 @@
+<?php 
+   $API_KEY = 'YOUR_ACCUWEATHER_API_KEY'; 
+?>
