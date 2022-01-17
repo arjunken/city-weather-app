@@ -1,8 +1,8 @@
-const { CleanWebpackPlugin } = require('clean-webpack-plugin')
-const CopyWebpackPlugin = require('copy-webpack-plugin')
-const HtmlWebpackPlugin = require('html-webpack-plugin')
-
-const paths = require('./paths')
+const { CleanWebpackPlugin } = require('clean-webpack-plugin');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+// const webpack = require("webpack");
+const paths = require('./paths');
 
 module.exports = {
   // Where webpack looks to start building the bundle
@@ -19,6 +19,12 @@ module.exports = {
   plugins: [
     // Removes/cleans build folders and unused assets when rebuilding
     new CleanWebpackPlugin(),
+
+    // Add Jquery
+  //   new webpack.ProvidePlugin({
+  //     $: "jquery",
+  //     jQuery: "jquery"
+  // }),
 
     // Copies files from target to destination folder
     new CopyWebpackPlugin({

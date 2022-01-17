@@ -4,11 +4,11 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script> -->
 
 </head>
 <body>
@@ -17,37 +17,41 @@
    
      <div class="weatherheader d-flex flex-column">
      
-        <h2 class="text-center my-4 text-light">City Weather Lookup</h2>
-        <form class="search" style="display: none;">
-            <label for="search-city text-light">City Name:</label> <br>
-            <input class="form-control border-light" type="text" name="search_city" placeholder="Type City Name for Weather">
+        <h2 class="city-title text-center my-4 text-light">City Weather Lookup</h2>
+        <form class="getlocation form-group">
+            <select class="country form-control form-select mb-3" name=country aria-label="country select drop-down menu"></select>
+            <input class="form-control border-light mb-3" type="text" name="zipcode" placeholder="Enter Zip/PIN Code (First 3 letters only for alpha-numeric codes)">
+            <button type="submit" class="btn btn-primary form-control disabled">Find Me</button>
         </form>
         <p class="apifailed text-warning"></p>
      </div>
-    <ul class="cities list-group" style="display: none;"> </ul>
-    <div class="weatherbody d-flex flex-column bg-light text-center"> </div>    
-    <div class="card rounded-0" style="display:none"> 
-        <nav>
-            <div class="nav nav-tabs mt-2" id="nav-tab" role="tablist">
-              <button class="nav-link active" id="nav-hourly-tab" data-bs-toggle="tab" data-bs-target="#nav-hourly" type="button" role="tab" aria-controls="nav-hourly" aria-selected="true">Hourly Forecast <span id="hourly-tab"> </span></button>
-              <button class="nav-link" id="nav-daily-tab" data-bs-toggle="tab" data-bs-target="#nav-daily" type="button" role="tab" aria-controls="nav-daily" aria-selected="false">5 Day Forecast <span id="daily-tab"> </span> </button>
-            </div>
-        </nav>
-          <div class="tab-content" id="nav-tabContent">
-            <div class="tab-pane fade show active" id="nav-hourly" role="tabpanel" aria-labelledby="nav-hourly-tab">
-                <div class="card-body hourly-weather d-flex flex-column p-2"></div>
-            </div>
-            <div class="tab-pane fade" id="nav-daily" role="tabpanel" aria-labelledby="nav-daily-tab">
-                <canvas id="DailyTempChart" class="p-3"></canvas>
-            </div>
-          </div>
+          
+   <!-- <div class="weatherbody d-flex flex-column bg-light text-center"> 
+      <div class="weather-map"></div> 
+      <img src="./assets/day.jpg" alt="" class="weather-image">
+   </div>     -->
 
-    </div> 
+   <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
+      <li class="nav-item" role="presentation">
+        <button class="nav-link active" id="pills-home-tab" data-bs-toggle="pill" data-bs-target="#pills-home" type="button" role="tab" aria-controls="pills-home" aria-selected="true">Home</button>
+      </li>
+      <li class="nav-item" role="presentation">
+        <button class="nav-link" id="pills-profile-tab" data-bs-toggle="pill" data-bs-target="#pills-profile" type="button" role="tab" aria-controls="pills-profile" aria-selected="false">Profile</button>
+      </li>
+      <li class="nav-item" role="presentation">
+        <button class="nav-link" id="pills-contact-tab" data-bs-toggle="pill" data-bs-target="#pills-contact" type="button" role="tab" aria-controls="pills-contact" aria-selected="false">Contact</button>
+      </li>
+    </ul>
+    <div class="tab-content" id="pills-tabContent">
+      <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">...</div>
+      <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">...</div>
+      <div class="tab-pane fade" id="pills-contact" role="tabpanel" aria-labelledby="pills-contact-tab">...</div>
+    </div>
 
 <!-- Editing City-->
   
   <!-- Modal -->
-  <div class="modal fade" id="Modal" tabindex="-1" aria-labelledby="ModalLabel" aria-hidden="true">
+  <!-- <div class="modal fade" id="Modal" tabindex="-1" aria-labelledby="ModalLabel" aria-hidden="true">
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
@@ -63,17 +67,17 @@
         <ul class="modal-cities list-group" style="display: none;"> </ul>
       </div>
     </div>
-  </div>
+  </div> -->
 
  </div>
 
- <footer class="footer bg-light mt-2">
+ <footer class="footer mt-auto py-3 bg-light fixed-bottom">
   <div class="container text-center">
     <span class="text-muted">© 2022 Copyright: arjunken.com | Powered by: ChartJS | AccuWeather API </span>
   </div>
 </footer>
 
-<script src="https://cdn.jsdelivr.net/npm/chart.js@3.7.0/dist/chart.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/date-fns/1.30.1/date_fns.min.js" integrity="sha512-F+u8eWHrfY8Xw9BLzZ8rG/0wIvs0y+JyRJrXjp3VjtFPylAEEGwKbua5Ip/oiVhaTDaDs4eU2Xtsxjs/9ag2bQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<!-- <script src="https://cdn.jsdelivr.net/npm/chart.js@3.7.0/dist/chart.min.js"></script> -->
+<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/date-fns/1.30.1/date_fns.min.js" integrity="sha512-F+u8eWHrfY8Xw9BLzZ8rG/0wIvs0y+JyRJrXjp3VjtFPylAEEGwKbua5Ip/oiVhaTDaDs4eU2Xtsxjs/9ag2bQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script> -->
 </body>
 </html>
