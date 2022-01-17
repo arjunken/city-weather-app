@@ -1,4 +1,5 @@
 // Test import of a JavaScript module
+import '@/js/bootstrap.bundle.min'
 import '@/js/main'
 
 // // Test import of an asset

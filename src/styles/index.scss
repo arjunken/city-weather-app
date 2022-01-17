@@ -6,16 +6,4 @@
 // @import 'variables';
 // @import 'scaffolding';
 
-//Customized Bootstrap
-$primary:#1d3557 ;
-$secondary: #457b9d;
-$success: #4A9E2E;
-$info: #A7DADC;     
-$warning: #FBDBDD; 
-$danger:#f5a3a9;    
-$light: #ffffff;  
-$dark: #05090f;      
-
-
-@import 'bootstrap';
-@import 'custom';
+@use 'custom';
