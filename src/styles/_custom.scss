@@ -2,114 +2,72 @@
 @import url('https://fonts.googleapis.com/css2?family=Barlow:wght@300;500;700&display=swap');
 
 body {
-  background-image: linear-gradient(#8eb5cd, #e3ecf3);
-  font-family: 'Barlow', sans-serif;
-  -ms-overflow-style: none;
-  overflow-y: scroll;
+    background-image: linear-gradient(#8EB5CD,#E3ECF3);
+    font-family:'Barlow', sans-serif;
 }
 
-.main {
-  margin-bottom: 100px;
+h2{
+    font-weight: 700;
 }
 
-body::-webkit-scrollbar {
-  display: none;
+.temp {
+    font-size:36pt;
+    font-weight: 500;
+    margin: auto;
 }
 
-h2 {
-  font-weight: 700;
+.cities, .modal-cities{
+    overflow:auto;
+    max-height: 200px;
+    cursor: pointer;
 }
 
-.w-icon {
-  width: 50%;
-  height: auto;
+.fa-edit, .modal-search{
+    cursor: pointer;
 }
 
-.hourly-weather-icon .daily-weather-icon {
-  width: 10%;
-  height: auto;
+.fa-search:hover{
+    color: grey;
+}
+.cities, .modal-cities li:hover{
+    background-color:darkgray;
 }
 
-.weather-data-rows {
-  border: 1px solid rgba(217, 220, 223, 0.8);
+.hourly-weather-item:hover{
+    background-color:rgb(230, 230, 230);
 }
 
-.minmaxtemp {
-  padding-bottom: 15px;
+.weather-image{
+    width: inherit;
+    height: 250px;
+    object-fit: cover;
 }
 
-#temperature {
-  font-size: 62pt;
-  font-weight: 600;
-  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+.hourly-weather-item {
+    background-color:rgba(255, 255, 255, 0.3);
+    box-shadow:  2px 2px 5px #d3d3d3;
+    margin: 5px 5px;
+    
 }
 
-#deg {
-  font-size: 24pt;
-}
-.datetime {
-  font-size: 14pt;
-  margin-top: 15px;
+.hourly-icon{
+    width: 15%;
+    height: 15%;
+    padding: 5px;
 }
 
-.weather-container {
-  border-top: 10px solid #1d3557;
-  box-shadow: 5px 5px 5px #7a90a8;
-  background-color: white;
+.headline{
+    font-size: 10pt;
 }
-
-.more-info {
-  flex-basis: 25%;
-}
-
-.weather-value {
-  color: #4a9e2e;
-  font-weight: 700;
-}
-
-//Loader Starts
-.lds-hourglass {
-  display: inline-block;
-  position: relative;
-  width: 80px;
-  height: 80px;
-  margin-left: 50%;
-}
-.lds-hourglass:after {
-  content: ' ';
-  display: block;
-  border-radius: 50%;
-  width: 0;
-  height: 0;
-  margin: 8px;
-  box-sizing: border-box;
-  border: 32px solid #fff;
-  border-color: #fff transparent #fff transparent;
-  animation: lds-hourglass 1.2s infinite;
-}
-@keyframes lds-hourglass {
-  0% {
-    transform: rotate(0);
-    animation-timing-function: cubic-bezier(0.55, 0.055, 0.675, 0.19);
-  }
-  50% {
-    transform: rotate(900deg);
-    animation-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
-  }
-  100% {
-    transform: rotate(1800deg);
-  }
-}
-// Loader Ends
 
 //Customized Bootstrap
-$primary: #1d3557;
+$primary:#1d3557 ;
 $secondary: #457b9d;
-$success: #4a9e2e;
-$info: #a7dadc;
-$warning: #fbdbdd;
-$danger: #f5a3a9;
-$light: #ffffff;
-$dark: #05090f;
+$success: #4A9E2E;
+$info: #A7DADC;     
+$warning: #FBDBDD; 
+$danger:#f5a3a9;    
+$light: #ffffff;  
+$dark: #05090f;      
 
-@import '../../node_modules/bootstrap/scss/bootstrap.scss';
+@import "../../node_modules/bootstrap/scss/bootstrap.scss"; 

@@ -1,122 +1,87 @@
-//Imports
-import { format, fromUnixTime } from 'date-fns'
-const d2d = require('degrees-to-direction')
 // const weatherbody = document.querySelector('.weatherbody');
 // const hourly_weather = document.querySelector('.hourly-weather');
 // const hourly_tab = document.getElementById('hourly-tab');
 // const daily_tab = document.getElementById('daily-tab');
-const datedisplay = document.querySelector('.datetime')
-const minmaxtemp = document.querySelector('.minmaxtemp')
-const temperature = document.getElementById('temperature')
-const feelslike = document.querySelector('.feelslike-temp')
-const weatheralert = document.querySelector('.weather-alert')
-const conditions = document.querySelector('.current-cond')
-const wicon = document.querySelector('.w-icon')
-const moreinfo = document.querySelector('.more-info')
-const hourlyweatherdatatag = document.querySelector('.hourly-weather-data')
-const dailyweatherdatatag = document.querySelector('.daily-weather-data')
-const accordionalert = document.querySelector('.accordion-alert')
-const accordionalertbody = document.querySelector('.accordion-alert-body')
+
+
+
 
 // //#####################
-// // Display Today Weather
+// // Display Current Weather
+// //#####################
+// const displayCurrentWeatherData = (wdata,citydata) => {
+//     const imgquerystr = wdata[0].weatherText.replace(/\s+/g,'%20');
+//     let img = `<img src="assets/night.jpg" class="bkg_img" alt="">`;
+//     if(wdata[0].isDayTime){ 
+//     img = `<img src="assets/day.jpg" class="bkg_img" alt="">`;
+//     }
+//     const htmlContent = img + 
+//     `<p class="city my-2">${citydata[0].cityName}, ${citydata[0].cityProv}, ${citydata[0].cityCtr} <br> Updated ${dateFns.distanceInWords(new Date(),wdata[0].apiCallTime,{ addSuffix: true })}</p>
+//     <i class="fa fa-edit" data-bs-toggle="modal" data-bs-target="#Modal" data-bs-toggle="tooltip" data-bs-placement="top" title="Change Location"></i>
+//     <div class="d-flex flex-row justify-content-evenly">        
+//         <p class="temp">${wdata[0].temperatureValue} <sup>0</sup>${wdata[0].temperatureUnit}</p>
+//         <p class="conditions m-auto">${wdata[0].weatherText}</p>
+//         <img src="assets/${wdata[0].weatherIcon}.png" alt="" class="m-auto weathericon">
+//     </div>`;        
+//     weatherbody.innerHTML = htmlContent;
+// }
+            
+
+// //#####################
+// // Display Hourly Weather
+// //#####################
+// const displayHourlyData = (hourlydata) => {   
+//     hourly_tab.innerHTML = ` (${dateFns.distanceInWords(new Date(),hourlydata[0].apiCallTime,{ addSuffix: true })})`;
+//     for (let i=1;i<hourlydata.length;i++){
+//     hourly_weather.innerHTML += `
+//     <div class="hourly-weather-item d-flex flex-row"> 
+//     <div class="hourly-time w-25 align-self-center m-auto">${dateFns.format(hourlydata[i].dateTime,"ha | ddd")}</div>
+//     <div class="hourly-temp w-25 align-self-center">${hourlydata[i].tempC} <sup>0</sup>C</div>
+//     <div class="hourly-cond w-25 align-self-center">${hourlydata[i].iconPhrase}</div>
+//     <img src="assets/${hourlydata[i].weatherIcon}.png" alt="" class="hourly-icon w-10 align-self-center">
+//     </div>`;
+//     }
+// }
+
+// //#####################
+// // Display Daily Weather
 // //#####################
 
-const displayCurrentWeatherData = (cwdata) => {
-  datedisplay.innerHTML = format(new Date(), 'MMMM dd, yyyy | hh:mm a')
-  temperature.innerHTML = (cwdata.current.temp - 273).toFixed(1)
-  minmaxtemp.innerHTML = `Min: <strong class="weather-value">${(
-    cwdata.daily[0].temp.min - 273
-  ).toFixed(1)}°C </strong> | Max: <strong class="weather-value"> ${(
-    cwdata.daily[0].temp.max - 273
-  ).toFixed(1)}°C </strong>`
-  feelslike.innerHTML = `Feels like <strong class="weather-value">${(
-    cwdata.current.feels_like - 273
-  ).toFixed(1)}°C </strong> `
-  if (cwdata.alerts) {
-    const alerttext = cwdata.alerts[0].description.split('.')
-    accordionalert.classList.remove('d-none')
-    weatheralert.innerHTML = alerttext[0].replace(/\n/g, '')
-    accordionalertbody.innerHTML = cwdata.alerts[0].description
-  } else {
-    weatheralert.innerHTML = 'No alerts, all good.'
-    accordionalert.classList.add('d-none')
-  }
+// const displayDailyWeatherData = (dailydata) => {
+//     //Display Headline Text
+//     weatherbody.innerHTML += `<p class="muted text-warning headline"> ${dailydata[1].headline}</p>`;
+//     daily_tab.innerHTML = ` (${dateFns.distanceInWords(new Date(),dailydata[0].apiCallTime,{ addSuffix: true })})`;
+//     //Chart 
+//         const data = {
+//             labels: dailydata[2].xAxis,
+//             datasets: [
+//                 {
+//                 label: 'Max Temperatures',
+//                 backgroundColor: 'rgb(255, 99, 132)',
+//                 borderColor: 'rgb(255, 99, 132)',
+//                 data: dailydata[2].yMax
+//                 },
+//                 {
+//                 label: 'Min Temeratures',
+//                 backgroundColor: 'rgb(50, 200, 52)',
+//                 borderColor: 'rgb(50, 200, 52)',
+//                 data: dailydata[2].yMin
+//                 }
+//             ]
+//         };
 
-  conditions.innerHTML = cwdata.current.weather[0].description
-  const imgsrc = `https://openweathermap.org/img/wn/${cwdata.current.weather[0].icon}@2x.png`
-  wicon.setAttribute('src', imgsrc)
-  const moreweatherdata = [
-    { title: 'Clouds', value: cwdata.current.clouds + '%' },
-    { title: 'Dew Point', value: (cwdata.current.dew_point - 273).toFixed(1) + '°C' },
-    { title: 'Humidity', value: cwdata.current.humidity + '%' },
-    { title: 'Sunrise', value: format(fromUnixTime(cwdata.current.sunrise), 'hh:mm a') },
-    { title: 'Sunset', value: format(fromUnixTime(cwdata.current.sunset), 'hh:mm a') },
-    { title: 'Visibility', value: cwdata.current.visibility / 1000 + ' km' },
-    { title: 'Wind Direction', value: d2d(cwdata.current.wind_deg) },
-    { title: 'Wind Direction', value: cwdata.current.wind_speed + ' m/s' },
-  ]
+//         const chartCanvas = document.getElementById('DailyTempChart');
+            
+//         const myChart = new Chart(chartCanvas,{
+//             type: 'line',
+//             data: data,
+//             options: {
+//                 responsive: true
+//             }
+//             } );
+    
+// }
 
-  for (let i = 0; i < moreweatherdata.length; i++) {
-    const moreinfo_html = `
-        <div class="card text-center m-1">
-        <div class="card-body">
-          <h5 class="card-title">${moreweatherdata[i].title}</h5>
-          <p class="card-text weather-value">${moreweatherdata[i].value}</p>
-        </div>
-        </div>`
-    moreinfo.innerHTML += moreinfo_html
-  }
 
-  //Display HOurly Data
-  const hourlyweatherheader_html = `
-    <div class="m-1 p-2 d-flex flex-row justify-content-between">   
-      <h6 class="header-text">Time</h6>
-      <h6 class="header-text">Condition</h6>
-      <h6 class="header-text">Temp</h6>
-      <h6 class="header-text">Feels Like</h6>
-      <h6 class="header-text">Rain%</h6>
-    </div>`
-  hourlyweatherdatatag.innerHTML = hourlyweatherheader_html
-
-  for (let i = 0; i < cwdata.hourly.length; i++) {
-    const hourlyweatherdata_html = `
-    <div class="m-1 p-2 d-flex flex-row justify-content-between weather-data-rows">   
-      <p class="weather-value my-auto">${format(fromUnixTime(cwdata.hourly[i].dt), 'hh:mm a')}</p>
-      <img src="https://openweathermap.org/img/wn/${
-        cwdata.hourly[i].weather[0].icon
-      }.png" class="hourly-weather-icon"/>
-      <p class="weather-value my-auto">${(cwdata.hourly[i].temp - 273).toFixed(1)}°C</p>
-      <p class="weather-value my-auto">${(cwdata.hourly[i].feels_like - 273).toFixed(1)}°C</p>
-      <p class="weather-value my-auto">${cwdata.hourly[i].pop * 100}%</p>
-    </div>`
-    hourlyweatherdatatag.innerHTML += hourlyweatherdata_html
-  }
-
-  // Display Daily Weather Data
-  const dailyweatherheader_html = `
-<div class="m-1 p-2 d-flex flex-row justify-content-between">   
-  <h6 class="header-text">Time</h6>
-  <h6 class="header-text">Condition</h6>
-  <h6 class="header-text">Temp</h6>
-  <h6 class="header-text">Rain%</h6>
-</div>`
-  dailyweatherdatatag.innerHTML = dailyweatherheader_html
-
-  for (let i = 0; i < cwdata.daily.length; i++) {
-    const dailyweatherdata_html = `
-<div class="m-1 p-2 d-flex flex-row justify-content-between weather-data-rows">   
-  <p class="weather-value my-auto">${
-    i == 0 ? 'Today' : format(fromUnixTime(cwdata.daily[i].dt), 'MMM do')
-  }</p>
-  <img src="https://openweathermap.org/img/wn/${
-    cwdata.daily[i].weather[0].icon
-  }.png" class="daily-weather-icon"/>
-  <p class="weather-value my-auto">${(cwdata.daily[i].temp.day - 273).toFixed(1)}°C</p>
-  <p class="weather-value my-auto">${cwdata.daily[i].pop * 100}%</p>
-</div>`
-    dailyweatherdatatag.innerHTML += dailyweatherdata_html
-  }
-}
-
-export { displayCurrentWeatherData }
+//export the functions
+// export {displayCurrentWeatherData, displayHourlyData, displayDailyWeatherData, selectCity};
