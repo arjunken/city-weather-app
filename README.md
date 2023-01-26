@@ -1,7 +1,7 @@
 # CityWeatherApp
-A simple Javascript and PHP based weather app using Accuweather APIs and ChartJS
+A simple Javascript and PHP-based weather app using Accuweather APIs and ChartJS
 
-The app was built as part of my experimentation with Modern JavaScript. I makes API calls through a back-end script written in PHP which is being used as a middleware. If you are learning Javascript and basics of consuming APIs, this project could be a great start. Fork it or clone it to get started. You can also improve this app further. Maybe a great place to practice your GitHub skills. 
+The app was built as part of my experimentation with Modern JavaScript. I make API calls through a back-end script written in PHP, which is being used as middleware. If you are learning Javascript and the basics of consuming APIs, this project could be a great start. Fork it or clone it to get started. You can also improve this app further. Maybe a great place to practice your GitHub skills.
 
 ## Tech Stack
 _Front-end_: of course HTML5, CSS (Wrapped in Bootstrap 5) and Modern Javascript. For experimentation, I have also included ChartJs and Date-Fns libraries.
